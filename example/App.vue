@@ -4,16 +4,16 @@
       <textarea class="textarea" v-model="markdown"></textarea>
     </div>
     <div class="column">
-      <markduck :markdown="markdown"/>
+      <markduck :markdown="markdown" />
     </div>
-  <div>
+  </div>
 </template>
 
 <script>
-import Markduck from '../src/index.ts'
-import FigureImage from './FigureImage.vue'
-import ListItem from './ListItem.vue'
-import UnorderedList from './UnorderedList.vue'
+import Markduck from '../src/index.ts';
+import FigureImage from './FigureImage.vue';
+import ListItem from './ListItem.vue';
+import UnorderedList from './UnorderedList.vue';
 
 export default {
   name: 'App',
@@ -22,14 +22,14 @@ export default {
       return Markduck({
         ul: UnorderedList,
         li: ListItem,
-        img: (vdom) => {
+        img: vdom => {
           if (vdom.properties.attributes.alt) {
-            return FigureImage
+            return FigureImage;
           }
-          return undefined
+          return undefined;
         },
-      })
-    })()
+      });
+    })(),
   },
   data() {
     return {
@@ -56,14 +56,14 @@ plain text plain text plain text plain text plain text.
 - JoJo's Bizarre Adventure
 - [Kill la Kill](https://en.wikipedia.org/wiki/Kill_la_Kill)
 
-`
-    }
+`,
+    };
   },
-}
+};
 </script>
 
 <style>
-body{
+body {
   margin: 0;
   padding: 0;
 }

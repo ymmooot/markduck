@@ -8,8 +8,8 @@
 <script>
 export default {
   name: 'FigureImage',
-  props: ['src', 'alt']
-}
+  props: ['src', 'alt'],
+};
 </script>
 
 <style module>

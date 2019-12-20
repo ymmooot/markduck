@@ -10,7 +10,9 @@
     "build": "tsc -p .",
     "demo": "parcel start example/index.html",
     "release:prepare": "shipjs prepare",
-    "release:trigger": "shipjs trigger"
+    "release:trigger": "shipjs trigger",
+    "lint": "prettier --vue-indent-script-and-style=false --check '**/*.{js,ts,vue,html,json,md,yml}' --ignore-path .gitignore",
+    "lintfix": "npm run lint -- --write"
   },
   "files": [
     "lib"
@@ -43,6 +45,7 @@
     "jest": "^24.9.0",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
+    "prettier": "^1.19.1",
     "sass": "^1.23.7",
     "shipjs": "0.11.3",
     "ts-jest": "^24.2.0",

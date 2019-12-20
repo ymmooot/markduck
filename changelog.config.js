@@ -1,4 +1,1 @@
-
-module.exports = {
-  disableEmoji: true,
-};
+module.exports = { disableEmoji: true };

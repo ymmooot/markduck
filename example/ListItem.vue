@@ -1,13 +1,15 @@
 <template>
-  <li class="li"><slot/></li>
+  <li class="li">
+    <slot />
+  </li>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style lang="scss" scoped>
-.li{
+.li {
   border-bottom: 1px solid gray;
 
   &:nth-child(n + 2) {

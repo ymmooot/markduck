@@ -80,4 +80,3 @@ Clone and run:
 ```bash
 npm run demo
 ```
-
