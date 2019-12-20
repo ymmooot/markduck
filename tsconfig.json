@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./lib/",
+    "sourceMap": false,
+    "declaration": true,
+    "lib": ["es2015", "es2017", "dom"]
+  },
+  "include": [
+    "src/**/*"
+  ],
+}
