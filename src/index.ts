@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import convert, { ComponentRegisterOption } from './convert';
+
 export default (components: ComponentRegisterOption) => {
   return Vue.extend({
     name: 'markduck-root',
