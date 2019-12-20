@@ -1,9 +1,5 @@
-import Vue, { VueConstructor } from 'vue';
-import convert from './convert'
-
-export type ComponentRegisterOption = {
-  'image': VueConstructor<Vue>;
-}
+import Vue from 'vue';
+import convert, { ComponentRegisterOption } from './convert'
 
 export default (components: ComponentRegisterOption) => {
   return Vue.extend({

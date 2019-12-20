@@ -1,7 +1,11 @@
-import { CreateElement, VNode } from "vue";
+import { VueConstructor, CreateElement, VNode } from "vue";
 import unified from "unified";
 import remarkParse from "remark-parse";
 import remarkVDom from "remark-vdom";
+
+export type ComponentRegisterOption = {
+  [keyof: string]: VueConstructor<Vue>;
+}
 
 const markdownToVDom = (markdown: string): any => {
   const file = unified()
@@ -11,7 +15,7 @@ const markdownToVDom = (markdown: string): any => {
     return file.contents
 };
 
-const vdomToVNode = (createElement: CreateElement, vdoms: any[], components): VNode[] => {
+const vdomToVNode = (createElement: CreateElement, vdoms: any[], components: ComponentRegisterOption): VNode[] => {
   const nodes: VNode[] = []
   for (let index = 0; index < vdoms.length; index++) {
     const vdom = vdoms[index];
@@ -43,7 +47,7 @@ const vdomToVNode = (createElement: CreateElement, vdoms: any[], components): VN
   return nodes
 }
 
-const convert = (createElement: CreateElement, markdown: string, components: any[]): VNode[] => {
+const convert = (createElement: CreateElement, markdown: string, components: ComponentRegisterOption): VNode[] => {
   const tree = markdownToVDom(markdown)
   return vdomToVNode(createElement, [tree], components)
 };

@@ -5,9 +5,9 @@ Render markdown with your Vue components.
 ## Installation
 
 ```
-$ npm install markduck
+$ npm install markduckjs
 or
-$ yarn add markduck
+$ yarn add markduckjs
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ $ yarn add markduck
 </template>
 
 <script>
-import Markduck from 'markduck'
+import Markduck from 'markduckjs'
 
 import UnorderedList from '/your/custom/components/UnorderedList'
 import ListItem from '/your/custom/components/ListItem'

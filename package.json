@@ -1,12 +1,12 @@
 {
-  "name": "markduck",
-  "version": "0.0.0",
+  "name": "markduckjs",
+  "version": "0.0.1",
   "description": "Render markdown with your Vue components.",
   "main": "lib/index.js",
   "author": "Ryota Yamamoto <ryota.yama.9@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "echo 'not yet'",
     "build": "tsc -p .",
     "demo": "parcel start example/index.html",
     "release:prepare": "shipjs prepare",
@@ -43,6 +43,7 @@
     "postcss-modules": "^1.4.1",
     "sass": "^1.23.7",
     "shipjs": "0.11.3",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.3",
     "vue-template-compiler": "^2.6.11"
   }
