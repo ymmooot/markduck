@@ -1,6 +1,9 @@
 # markduck
 
-Render markdown with your Vue components.
+[![version](https://img.shields.io/npm/v/markduckjs.svg)](https://www.npmjs.com/package/markduckjs)
+[![dependencies](https://david-dm.org/ymmooot/markduckjs/status.svg)](https://david-dm.org/ymmooot/markduckjs)
+
+Render markdown with your [Vue](https://github.com/vuejs/vue) components.
 
 ## Installation
 
@@ -20,9 +23,9 @@ $ yarn add markduckjs
 <script>
 import Markduck from 'markduckjs'
 
-import UnorderedList from '/your/custom/components/UnorderedList'
-import ListItem from '/your/custom/components/ListItem'
-import FigureImage from '/your/custom/components/FigureImage'
+import UnorderedList from '/your/custom/components/UnorderedList.vue'
+import ListItem from '/your/custom/components/ListItem.vue'
+import FigureImage from '/your/custom/components/FigureImage.vue'
 
 export default {
   components: {
@@ -30,7 +33,12 @@ export default {
       return Markduck({
         ul: UnorderedList, // register your components!
         li: ListItem,
-        img: FigureImage,
+        img: (vdom) => {
+          if (vdom.properties.attributes.alt) {
+            return FigureImage
+          }
+          return undefined
+        },
       })
     })()
   },
@@ -64,3 +72,12 @@ plain text plain text plain text plain text plain text.
   }
 }
 ```
+
+## Demo
+
+Clone and run:
+
+```bash
+npm run demo
+```
+
