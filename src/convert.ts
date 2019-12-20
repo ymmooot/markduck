@@ -61,7 +61,7 @@ const vdomToVNode = (createElement: CreateElement, vdoms: VTree[], components: C
   return nodes
 }
 
-const convert = (createElement: CreateElement, markdown: string, components: ComponentRegisterOption): VNode[] => {
+const convert = (createElement: CreateElement, markdown: string, components: ComponentRegisterOption): (VueVNode | string)[] => {
   const tree = markdownToVDom(markdown)
   return vdomToVNode(createElement, [tree], components)
 };
