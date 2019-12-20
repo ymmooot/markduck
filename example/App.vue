@@ -22,7 +22,12 @@ export default {
       return Markduck({
         ul: UnorderedList,
         li: ListItem,
-        img: FigureImage,
+        img: (vdom) => {
+          if (vdom.properties.attributes.alt) {
+            return FigureImage
+          }
+          return undefined
+        },
       })
     })()
   },

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ymmooot/markduck#readme",
   "dependencies": {
+    "@types/virtual-dom": "^2.1.0",
     "remark-parse": "^7.0.2",
     "remark-vdom": "^8.0.0",
     "unified": "^8.4.2",
