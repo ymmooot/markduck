@@ -1,4 +1,4 @@
-name: Test
+name: Main
 
 on: [push]
 
@@ -11,6 +11,8 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
       - run: npm run test:coverage
       - uses: codecov/codecov-action@v1
         with:
