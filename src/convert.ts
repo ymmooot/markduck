@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse';
 import remarkVDom from 'remark-vdom';
 import { VNode, VText, VTree } from 'virtual-dom';
 
-type ComponentRegisterFunc = (RVDom) => VueConstructor<Vue> | undefined;
+type ComponentRegisterFunc = (node: VNode) => VueConstructor<Vue> | undefined;
 
 export type ComponentRegisterOption = {
   [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
