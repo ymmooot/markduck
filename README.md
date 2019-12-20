@@ -20,11 +20,15 @@ $ yarn add markduck
 <script>
 import Markduck from 'markduck'
 
+import UnorderedList from '/your/custom/components/UnorderedList'
+import ListItem from '/your/custom/components/ListItem'
+import FigureImage from '/your/custom/components/FigureImage'
+
 export default {
   components: {
     markduck: (() => {
       return Markduck({
-        ul: UnorderedList,
+        ul: UnorderedList, // register your components!
         li: ListItem,
         img: FigureImage,
       })
@@ -53,7 +57,7 @@ plain text plain text plain text plain text plain text.
 - Hunter X Hunter
 - Initial D
 - JoJo's Bizarre Adventure
-- Kill la Kill
+- [Kill la Kill](https://en.wikipedia.org/wiki/Kill_la_Kill)
 
 `
     },
