@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="./assets/logo.png" alt="logo" title="logo" width="100px">
+</div>
+
 # markduck
 
 [![version](https://img.shields.io/npm/v/markduckjs.svg)](https://www.npmjs.com/package/markduckjs)
