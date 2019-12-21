@@ -1,3 +1,17 @@
+## [0.0.4](https://github.com/ymmooot/markduck/compare/v0.0.3...v0.0.4) (2019-12-21)
+
+
+### Features
+
+* add text filter ([6cf488d](https://github.com/ymmooot/markduck/commit/6cf488d54d603155f7746f3f35c702519e8f7f51))
+
+
+### BREAKING CHANGES
+
+* 🧨 change interface of options
+
+
+
 ## [0.0.3](https://github.com/ymmooot/markduck/compare/v0.0.2...v0.0.3) (2019-12-21)
 
 
