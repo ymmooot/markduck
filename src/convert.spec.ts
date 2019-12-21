@@ -15,35 +15,29 @@ plain text.
 `;
 
   const mockH: CreateElement = jest.fn().mockImplementation((...args) => args);
-  const vnodes = convert(mockH, markdown, { components: {}, remarkPlugins: [] });
+  const vnodes = convert(mockH, markdown, {});
 
   expect(vnodes).toEqual([
+    'div',
+    {},
     [
-      'div',
-      { attrs: undefined },
+      ['h1', {}, ['title']],
+      '\n',
+      ['p', {}, ['plain text.']],
+      '\n',
+      ['h2', {}, ['sub title']],
+      '\n',
       [
-        ['h1', { attrs: undefined }, ['title']],
-        '\n',
-        ['p', { attrs: undefined }, ['plain text.']],
-        '\n',
-        ['h2', { attrs: undefined }, ['sub title']],
-        '\n',
+        'ul',
+        {},
         [
-          'ul',
-          { attrs: undefined },
-          [
-            '\n',
-            ['li', { attrs: undefined }, ['list1']],
-            '\n',
-            [
-              'li',
-              { attrs: undefined },
-              ['list2 with ', ['img', { attrs: { alt: 'image', src: 'https://example.com/hoge.jpg' } }, []]],
-            ],
-            '\n',
-            ['li', { attrs: undefined }, ['list3']],
-            '\n',
-          ],
+          '\n',
+          ['li', {}, ['list1']],
+          '\n',
+          ['li', {}, ['list2 with ', ['img', { alt: 'image', src: 'https://example.com/hoge.jpg' }, undefined]]],
+          '\n',
+          ['li', {}, ['list3']],
+          '\n',
         ],
       ],
     ],
