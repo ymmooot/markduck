@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { emojify} from 'node-emoji';
+import { emojify } from 'node-emoji';
 import Markduck from '../src/index.ts';
 import FigureImage from './FigureImage.vue';
 import ListItem from './ListItem.vue';
@@ -22,7 +22,7 @@ export default {
     markduck: (() => {
       return Markduck({
         textFilter(text) {
-          return emojify(text)
+          return emojify(text);
         },
         components: {
           ul: UnorderedList,
@@ -33,7 +33,7 @@ export default {
             }
             return undefined;
           },
-        }
+        },
       });
     })(),
   },
@@ -43,6 +43,8 @@ export default {
 # title
 
 plain text plain text plain text plain text plain text.
+
+text emoji filter :duck:
 
 ## sub titles
 

@@ -11,9 +11,9 @@ type ComponentRegisterOption = {
 };
 
 export type Option = {
-  components: ComponentRegisterOption
-  textFilter?: (text: string) => string
-}
+  components: ComponentRegisterOption;
+  textFilter?: (text: string) => string;
+};
 
 const markdownToVDom = (markdown: string): any => {
   const file = unified()
@@ -33,7 +33,7 @@ const vdomToVNode = (
   parent: VNode | undefined,
   option: Option,
 ): (VueVNode | string)[] => {
-  const hasTextFilter = typeof option.textFilter === 'function'
+  const hasTextFilter = typeof option.textFilter === 'function';
   const nodes: (VueVNode | string)[] = [];
 
   for (let index = 0; index < vdoms.length; index++) {
@@ -82,11 +82,7 @@ const vdomToVNode = (
   return nodes;
 };
 
-const convert = (
-  createElement: CreateElement,
-  markdown: string,
-  option: Option,
-): (VueVNode | string)[] => {
+const convert = (createElement: CreateElement, markdown: string, option: Option): (VueVNode | string)[] => {
   const tree = markdownToVDom(markdown);
   return vdomToVNode(createElement, [tree], undefined, option);
 };

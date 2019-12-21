@@ -9,7 +9,7 @@ test('make Markduck component', () => {
     img: Vue.extend({ name: 'MyCustomImage' }),
     a: Vue.extend({ name: 'MyCustomLink' }),
   };
-  const textFilter = jest.fn()
+  const textFilter = jest.fn();
   const Markduck = makeMarkduckComponent({
     components,
     textFilter,

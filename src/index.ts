@@ -2,10 +2,10 @@ import Vue from 'vue';
 import convert, { Option } from './convert';
 
 export default (_option?: Option) => {
-  const option:Option = {
+  const option: Option = {
     textFilter: _option?.textFilter,
-    components: _option?.components || {}
-  }
+    components: _option?.components || {},
+  };
 
   return Vue.extend({
     name: 'markduck-root',
