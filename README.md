@@ -37,7 +37,7 @@ import FigureImage from '/your/custom/components/FigureImage.vue';
 import { emojify } from 'node-emoji';
 
 export default {
-  data() { 
+  data() {
     return {
       markdown: '# your markdown'
     };
@@ -86,12 +86,12 @@ type ComponentRegisterOption = {
 
 `{}`
 
-
 ### textFilter
 
 Mutate text node
 
 #### type
+
 `(text: string) => string;`
 
 #### default
