@@ -15,7 +15,7 @@ plain text.
 `;
 
   const mockH: CreateElement = jest.fn().mockImplementation((...args) => args);
-  const vnodes = convert(mockH, markdown, { components: {} });
+  const vnodes = convert(mockH, markdown, { components: {}, remarkPlugins: [] });
 
   expect(vnodes).toEqual([
     [

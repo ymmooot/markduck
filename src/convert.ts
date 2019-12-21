@@ -1,5 +1,5 @@
 import { VueConstructor, CreateElement, VNode as VueVNode } from 'vue';
-import unified from 'unified';
+import unified, { Plugin, Settings } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkVDom from 'remark-vdom';
 import { VNode, VText, VTree } from 'virtual-dom';
@@ -10,16 +10,28 @@ type ComponentRegisterOption = {
   [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
 };
 
+type UnifiedPlugin =
+  | {
+      plugin: Plugin;
+      config: Settings;
+    }
+  | Plugin;
+
 export type Option = {
   components: ComponentRegisterOption;
-  textFilter?: (text: string) => string;
+  remarkPlugins: UnifiedPlugin[];
 };
 
-const markdownToVDom = (markdown: string): any => {
-  const file = unified()
-    .use(remarkParse)
-    .use(remarkVDom)
-    .processSync(markdown);
+const markdownToVDom = (markdown: string, plugins: UnifiedPlugin[]): any => {
+  const p = [remarkParse, ...plugins, remarkVDom];
+  const u = p.reduce((acc, plugin) => {
+    if (plugin.name) {
+      return acc.use(plugin);
+    }
+    return acc.use(plugin.plugin, plugin.config);
+  }, unified());
+  const file = u.processSync(markdown);
+
   return file.contents;
 };
 
@@ -33,7 +45,6 @@ const vdomToVNode = (
   parent: VNode | undefined,
   option: Option,
 ): (VueVNode | string)[] => {
-  const hasTextFilter = typeof option.textFilter === 'function';
   const nodes: (VueVNode | string)[] = [];
 
   for (let index = 0; index < vdoms.length; index++) {
@@ -41,8 +52,7 @@ const vdomToVNode = (
 
     // VirtualText has no tag
     if (isVText(vdom)) {
-      const text = hasTextFilter ? option.textFilter(vdom.text) : vdom.text;
-      nodes.push(text);
+      nodes.push(vdom.text);
       continue;
     }
 
@@ -83,7 +93,7 @@ const vdomToVNode = (
 };
 
 const convert = (createElement: CreateElement, markdown: string, option: Option): (VueVNode | string)[] => {
-  const tree = markdownToVDom(markdown);
+  const tree = markdownToVDom(markdown, option.remarkPlugins);
   return vdomToVNode(createElement, [tree], undefined, option);
 };
 

@@ -28,13 +28,11 @@ $ yarn add markduckjs
 </template>
 
 <script>
-import Markduck from 'markduckjs';
-
 import UnorderedList from '/your/custom/components/UnorderedList.vue';
 import ListItem from '/your/custom/components/ListItem.vue';
 import FigureImage from '/your/custom/components/FigureImage.vue';
 
-import { emojify } from 'node-emoji';
+import gemojiToEmoji from 'remark-gemoji-to-emoji';
 
 export default {
   data() {
@@ -45,9 +43,7 @@ export default {
   components: {
     markduck: (() => {
       return Markduck({
-        textFilter(text) {
-          return emojify(text);
-        },
+        remarkPlugins: [gemojiToEmoji],
         components: {
           ul: UnorderedList, // register your components!
           li: ListItem,
@@ -68,11 +64,11 @@ export default {
 
 ### components
 
-Register Vue components corresponding to each Html element.
+Register Vue components corresponding to each HTML element.
 
 #### type
 
-`object`
+`Object`
 
 ```ts
 type ComponentRegisterFunc = (node: VNode, parentNode?: VNode) => VueConstructor<Vue> | undefined;
@@ -86,17 +82,19 @@ type ComponentRegisterOption = {
 
 `{}`
 
-### textFilter
+### remarkPlugins
 
-Mutate text node
+[Remark](https://github.com/remarkjs/remark) plugins.  
+A part of lists is here 👉 [github.com/remarkjs/remark/blob/master/doc/plugins.md#list-of-plugins](https://github.com/remarkjs/remark/blob/d1d4fe6bf4fb7888e4b5423444fa266a424bdbac/doc/plugins.md#list-of-plugins)
 
 #### type
 
-`(text: string) => string;`
+`Array` of `Plugin` or `{ plugin: Plugin, config: Settings }`  
+(`Plugin` and `Settings` are from [Unified](https://github.com/unifiedjs/unified).)
 
 #### default
 
-`undefined`
+`[]`
 
 ## Demo
 

@@ -3,7 +3,7 @@ import convert, { Option } from './convert';
 
 export default (_option?: Option) => {
   const option: Option = {
-    textFilter: _option?.textFilter,
+    remarkPlugins: _option?.remarkPlugins || [],
     components: _option?.components || {},
   };
 
