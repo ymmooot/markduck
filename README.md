@@ -113,3 +113,12 @@ Clone and run:
 ```bash
 npm run demo
 ```
+
+## Flow of conversion from markdown to Vue
+
+```
+            remark-parser       remark-rehype      createElement
+your markdown      ->      mdast      ->      hast      ->      vue
+                            ↑                  ↑
+                  your remark plugin     your rehype plugin
+```
