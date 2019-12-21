@@ -1,3 +1,17 @@
+## [0.0.5](https://github.com/ymmooot/markduck/compare/v0.0.4...v0.0.5) (2019-12-21)
+
+
+### Features
+
+* can insert remark plugins ([8050099](https://github.com/ymmooot/markduck/commit/805009953459a5cbe98943d0f224882b42b71953))
+
+
+### BREAKING CHANGES
+
+* 🧨 textFilter is removed
+
+
+
 ## [0.0.4](https://github.com/ymmooot/markduck/compare/v0.0.3...v0.0.4) (2019-12-21)
 
 
