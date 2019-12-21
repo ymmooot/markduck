@@ -3,7 +3,7 @@ import unified, { Plugin, Settings } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkToRehype from 'remark-rehype';
 
-import remarkVue, { UserRemarkVueOption, ComponentRegisterOption } from './remark-vue';
+import remarkVue, { UserRemarkVueOption, ComponentRegisterOption } from './rehype-vue';
 
 type PluginOption = Plugin | [Plugin, Settings];
 export type Option = {
@@ -17,20 +17,19 @@ const convert = (createElement: CreateElement, markdown: string, option: Option)
   const remarkPlugins = option?.remarkPlugins || [];
   const rehypePlugins = option?.rehypePlugins || [];
 
-  const isHast = !!rehypePlugins.length;
   const remarkVueOption: UserRemarkVueOption = {
-    isHast,
     createElement,
     components: option.components,
     sanitizeScheme: option.sanitizeScheme,
   };
 
+  // prettier-ignore
   const plugins = [
     remarkParse,
     ...remarkPlugins,
-    isHast ? remarkToRehype : undefined,
+    remarkToRehype,
     ...rehypePlugins,
-    [remarkVue, remarkVueOption],
+    [remarkVue, remarkVueOption]
   ];
 
   const processor = plugins.reduce((pipe, plugin: PluginOption) => {

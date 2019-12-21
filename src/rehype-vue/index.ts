@@ -1,5 +1,4 @@
 import Vue, { VueConstructor, CreateElement, VNodeData } from 'vue';
-import toHAST from 'mdast-util-to-hast';
 import sanitize from 'hast-util-sanitize';
 import toH from 'hast-to-hyperscript';
 import tableCellStyle from '@mapbox/hast-util-table-cell-style';
@@ -10,7 +9,6 @@ export type ComponentRegisterOption = {
 };
 
 export type UserRemarkVueOption = {
-  isHast: boolean;
   createElement: CreateElement;
   components?: ComponentRegisterOption;
   sanitizeScheme?: object;
@@ -41,7 +39,7 @@ export default function remarkVue(_options: UserRemarkVueOption) {
     const hast = {
       type: 'root',
       properties: {},
-      children: options.isHast ? node.children : toHAST(node).children,
+      children: node.children,
     };
     const sanitized = options.sanitizeScheme ? sanitize(hast, options.sanitizeScheme) : hast;
     const cellStyled = tableCellStyle(sanitized);
