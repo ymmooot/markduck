@@ -1,3 +1,19 @@
+## [0.0.6](https://github.com/ymmooot/markduck/compare/v0.0.5...v0.0.6) (2019-12-21)
+
+
+* make remark plugin to convert mdast to vue (#10) ([efdaf48](https://github.com/ymmooot/markduck/commit/efdaf483d277d718c9f3825515535955cdd3e524)), closes [#10](https://github.com/ymmooot/markduck/issues/10)
+
+
+### BREAKING CHANGES
+
+* 🧨 change options interface
+
+* refactor: remove mdast-util-to-hast
+
+* docs: update readme
+
+
+
 ## [0.0.5](https://github.com/ymmooot/markduck/compare/v0.0.4...v0.0.5) (2019-12-21)
 
 
