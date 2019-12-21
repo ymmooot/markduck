@@ -6,8 +6,13 @@ import { VNode, VText, VTree } from 'virtual-dom';
 
 type ComponentRegisterFunc = (node: VNode, parentNode?: VNode) => VueConstructor<Vue> | undefined;
 
-export type ComponentRegisterOption = {
+type ComponentRegisterOption = {
   [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
+};
+
+export type Option = {
+  components: ComponentRegisterOption;
+  textFilter?: (text: string) => string;
 };
 
 const markdownToVDom = (markdown: string): any => {
@@ -26,15 +31,18 @@ const vdomToVNode = (
   createElement: CreateElement,
   vdoms: VTree[],
   parent: VNode | undefined,
-  components: ComponentRegisterOption,
+  option: Option,
 ): (VueVNode | string)[] => {
+  const hasTextFilter = typeof option.textFilter === 'function';
   const nodes: (VueVNode | string)[] = [];
+
   for (let index = 0; index < vdoms.length; index++) {
     const vdom = vdoms[index];
 
     // VirtualText has no tag
     if (isVText(vdom)) {
-      nodes.push(vdom.text);
+      const text = hasTextFilter ? option.textFilter(vdom.text) : vdom.text;
+      nodes.push(text);
       continue;
     }
 
@@ -42,11 +50,11 @@ const vdomToVNode = (
       continue;
     }
 
-    const children = vdom.children?.length > 0 ? vdomToVNode(createElement, vdom.children, vdom, components) : [];
+    const children = vdom.children?.length > 0 ? vdomToVNode(createElement, vdom.children, vdom, option) : [];
 
     // get custom component
     const tagName = vdom.tagName?.toLowerCase();
-    const customComponentOpt = components[tagName];
+    const customComponentOpt = option.components[tagName];
     const customComponent = isFunc(customComponentOpt) ? customComponentOpt(vdom, parent) : customComponentOpt;
 
     if (customComponent) {
@@ -74,13 +82,9 @@ const vdomToVNode = (
   return nodes;
 };
 
-const convert = (
-  createElement: CreateElement,
-  markdown: string,
-  components: ComponentRegisterOption,
-): (VueVNode | string)[] => {
+const convert = (createElement: CreateElement, markdown: string, option: Option): (VueVNode | string)[] => {
   const tree = markdownToVDom(markdown);
-  return vdomToVNode(createElement, [tree], undefined, components);
+  return vdomToVNode(createElement, [tree], undefined, option);
 };
 
 export default convert;
