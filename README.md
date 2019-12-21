@@ -33,22 +33,25 @@ import ListItem from '/your/custom/components/ListItem.vue';
 import FigureImage from '/your/custom/components/FigureImage.vue';
 
 import gemojiToEmoji from 'remark-gemoji-to-emoji';
+import rehypePrism from '@mapbox/rehype-prism';
+import 'prismjs/themes/prism.css';
 
 export default {
   data() {
     return {
-      markdown: '# your markdown'
+      markdown: '# your markdown :duck:',
     };
   },
   components: {
     markduck: (() => {
       return Markduck({
         remarkPlugins: [gemojiToEmoji],
+        rehypePlugins: [rehypePrism],
         components: {
-          ul: UnorderedList, // register your components!
+          ul: UnorderedList,
           li: ListItem,
-          img: (vdom, parent) => { // you can register it via function
-            if (vdom.properties.attributes.alt) {
+          img: nodeData => {
+            if (nodeData.attrs.alt) {
               return FigureImage;
             }
             return undefined;
@@ -71,7 +74,7 @@ Register Vue components corresponding to each HTML element.
 `Object`
 
 ```ts
-type ComponentRegisterFunc = (node: VNode, parentNode?: VNode) => VueConstructor<Vue> | undefined;
+type ComponentRegisterFunc = (data: VNodeData) => VueConstructor<Vue> | undefined;
 
 type ComponentRegisterOption = {
   [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
@@ -89,12 +92,19 @@ A part of lists is here 👉 [github.com/remarkjs/remark/blob/master/doc/plugins
 
 #### type
 
-`Array` of `Plugin` or `{ plugin: Plugin, config: Settings }`  
+`Array` of `Plugin` or `[Plugin, Settings]`
 (`Plugin` and `Settings` are from [Unified](https://github.com/unifiedjs/unified).)
 
 #### default
 
 `[]`
+
+### rehypePlugins
+
+Same as remarkPlugins.  
+Rehype plugins will run after remarkPlugins.
+
+### sanitizeScheme
 
 ## Demo
 

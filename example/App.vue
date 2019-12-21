@@ -11,6 +11,8 @@
 
 <script>
 import gemojiToEmoji from 'remark-gemoji-to-emoji';
+import rehypePrism from '@mapbox/rehype-prism';
+import 'prismjs/themes/prism.css';
 
 import Markduck from '../src/index.ts';
 import FigureImage from './FigureImage.vue';
@@ -23,11 +25,12 @@ export default {
     markduck: (() => {
       return Markduck({
         remarkPlugins: [gemojiToEmoji],
+        rehypePlugins: [rehypePrism],
         components: {
           ul: UnorderedList,
           li: ListItem,
-          img: (vdom, parent) => {
-            if (vdom.properties.attributes.alt) {
+          img: nodeData => {
+            if (nodeData.attrs.alt) {
               return FigureImage;
             }
             return undefined;
@@ -44,6 +47,14 @@ export default {
 plain text plain text plain text plain text plain text.
 
 emoji code (\`:duck:\`) will be → :duck: by adding \`remark-gemoji-to-emoji\`
+
+\`\`\`ts
+class Duck {
+  quack() {
+    return 'quack!'
+  }
+}
+\`\`\`
 
 ## sub titles
 
