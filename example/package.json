@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-emoji": "^1.10.0"
+    "remark-gemoji-to-emoji": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3"

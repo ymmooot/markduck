@@ -9,10 +9,10 @@ test('make Markduck component', () => {
     img: Vue.extend({ name: 'MyCustomImage' }),
     a: Vue.extend({ name: 'MyCustomLink' }),
   };
-  const textFilter = jest.fn();
+  const remarkPlugins = [];
   const Markduck = makeMarkduckComponent({
     components,
-    textFilter,
+    remarkPlugins,
   });
   const wrapper = shallowMount(Markduck, {
     propsData: {
@@ -20,5 +20,5 @@ test('make Markduck component', () => {
     },
   });
   expect(wrapper.vm.$options.name).toBe('markduck-root');
-  expect(convert).toHaveBeenCalledWith(expect.any(Function), '# markdown contents', { components, textFilter });
+  expect(convert).toHaveBeenCalledWith(expect.any(Function), '# markdown contents', { components, remarkPlugins });
 });

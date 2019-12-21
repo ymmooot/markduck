@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { emojify } from 'node-emoji';
+import gemojiToEmoji from 'remark-gemoji-to-emoji';
+
 import Markduck from '../src/index.ts';
 import FigureImage from './FigureImage.vue';
 import ListItem from './ListItem.vue';
@@ -21,9 +22,7 @@ export default {
   components: {
     markduck: (() => {
       return Markduck({
-        textFilter(text) {
-          return emojify(text);
-        },
+        remarkPlugins: [gemojiToEmoji],
         components: {
           ul: UnorderedList,
           li: ListItem,
