@@ -37,6 +37,11 @@ import FigureImage from '/your/custom/components/FigureImage.vue';
 import { emojify } from 'node-emoji';
 
 export default {
+  data() { 
+    return {
+      markdown: '# your markdown'
+    };
+  },
   components: {
     markduck: (() => {
       return Markduck({
@@ -56,38 +61,42 @@ export default {
       });
     })(),
   },
-  computed: {
-    markdown() {
-      return `
-# title
-
-plain text plain text plain text plain text plain text.
-
-text emoji filter :duck:
-
-## sub titles
-
-| left | right |
-| --- | --- |
-| ![Reflected　Fuji](https://pbs.twimg.com/media/DxW9ZfOUcAAJOQk?format=jpg) | text |
-| [link　example](https://example.com) | **bold text** |
-
-- Animatrix
-- Blade Runner
-- Cowboy Bepob
-- Dragon Ball
-- Evangelion
-- Ghost in the Shell
-- Hunter X Hunter
-- Initial D
-- JoJo's Bizarre Adventure
-- [Kill la Kill](https://en.wikipedia.org/wiki/Kill_la_Kill)
-
-`
-    },
-  },
 };
 ```
+
+## Options
+
+### components
+
+Register Vue components corresponding to each Html element.
+
+#### type
+
+`object`
+
+```ts
+type ComponentRegisterFunc = (node: VNode, parentNode?: VNode) => VueConstructor<Vue> | undefined;
+
+type ComponentRegisterOption = {
+  [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
+};
+```
+
+#### default
+
+`{}`
+
+
+### textFilter
+
+Mutate text node
+
+#### type
+`(text: string) => string;`
+
+#### default
+
+`undefined`
 
 ## Demo
 
