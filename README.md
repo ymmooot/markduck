@@ -28,26 +28,33 @@ $ yarn add markduckjs
 </template>
 
 <script>
-import Markduck from 'markduckjs'
+import Markduck from 'markduckjs';
 
-import UnorderedList from '/your/custom/components/UnorderedList.vue'
-import ListItem from '/your/custom/components/ListItem.vue'
-import FigureImage from '/your/custom/components/FigureImage.vue'
+import UnorderedList from '/your/custom/components/UnorderedList.vue';
+import ListItem from '/your/custom/components/ListItem.vue';
+import FigureImage from '/your/custom/components/FigureImage.vue';
+
+import { emojify } from 'node-emoji';
 
 export default {
   components: {
     markduck: (() => {
       return Markduck({
-        ul: UnorderedList, // register your components!
-        li: ListItem,
-        img: (vdom) => {
-          if (vdom.properties.attributes.alt) {
-            return FigureImage
-          }
-          return undefined
+        textFilter(text) {
+          return emojify(text);
         },
-      })
-    })()
+        components: {
+          ul: UnorderedList, // register your components!
+          li: ListItem,
+          img: (vdom, parent) => { // you can register it via function
+            if (vdom.properties.attributes.alt) {
+              return FigureImage;
+            }
+            return undefined;
+          },
+        },
+      });
+    })(),
   },
   computed: {
     markdown() {
@@ -55,6 +62,8 @@ export default {
 # title
 
 plain text plain text plain text plain text plain text.
+
+text emoji filter :duck:
 
 ## sub titles
 
@@ -76,8 +85,8 @@ plain text plain text plain text plain text plain text.
 
 `
     },
-  }
-}
+  },
+};
 ```
 
 ## Demo
