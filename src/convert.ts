@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse';
 import remarkVDom from 'remark-vdom';
 import { VNode, VText, VTree } from 'virtual-dom';
 
-type ComponentRegisterFunc = (node: VNode) => VueConstructor<Vue> | undefined;
+type ComponentRegisterFunc = (node: VNode, parentNode?: VNode) => VueConstructor<Vue> | undefined;
 
 export type ComponentRegisterOption = {
   [keyof: string]: VueConstructor<Vue> | ComponentRegisterFunc;
@@ -25,6 +25,7 @@ const isVNode = (vdom): vdom is VNode => vdom.type === 'VirtualNode';
 const vdomToVNode = (
   createElement: CreateElement,
   vdoms: VTree[],
+  parent: VNode | undefined,
   components: ComponentRegisterOption,
 ): (VueVNode | string)[] => {
   const nodes: (VueVNode | string)[] = [];
@@ -41,12 +42,12 @@ const vdomToVNode = (
       continue;
     }
 
-    const children = vdom.children?.length > 0 ? vdomToVNode(createElement, vdom.children, components) : [];
+    const children = vdom.children?.length > 0 ? vdomToVNode(createElement, vdom.children, vdom, components) : [];
 
     // get custom component
     const tagName = vdom.tagName?.toLowerCase();
     const customComponentOpt = components[tagName];
-    const customComponent = isFunc(customComponentOpt) ? customComponentOpt(vdom) : customComponentOpt;
+    const customComponent = isFunc(customComponentOpt) ? customComponentOpt(vdom, parent) : customComponentOpt;
 
     if (customComponent) {
       const node = createElement(
@@ -79,7 +80,7 @@ const convert = (
   components: ComponentRegisterOption,
 ): (VueVNode | string)[] => {
   const tree = markdownToVDom(markdown);
-  return vdomToVNode(createElement, [tree], components);
+  return vdomToVNode(createElement, [tree], undefined, components);
 };
 
 export default convert;
