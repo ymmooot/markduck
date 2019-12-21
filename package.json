@@ -10,7 +10,7 @@
     "test:coverage": "npm test -- --coverage",
     "build": "tsc -p .",
     "demo": "parcel start example/index.html",
-    "lint": "prettier --vue-indent-script-and-style=false --check '**/*.{js,ts,vue,html,json,md,yml}' --ignore-path .gitignore",
+    "lint": "prettier --vue-indent-script-and-style=false --check '**/*.{js,ts,vue,html,json,md,yml}'",
     "lintfix": "npm run lint -- --write",
     "typecheck": "tsc -p . --noEmit",
     "release:prepare": "shipjs prepare",
