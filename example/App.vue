@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { emojify} from 'node-emoji';
 import Markduck from '../src/index.ts';
 import FigureImage from './FigureImage.vue';
 import ListItem from './ListItem.vue';
@@ -20,14 +21,19 @@ export default {
   components: {
     markduck: (() => {
       return Markduck({
-        ul: UnorderedList,
-        li: ListItem,
-        img: (vdom, parent) => {
-          if (vdom.properties.attributes.alt) {
-            return FigureImage;
-          }
-          return undefined;
+        textFilter(text) {
+          return emojify(text)
         },
+        components: {
+          ul: UnorderedList,
+          li: ListItem,
+          img: (vdom, parent) => {
+            if (vdom.properties.attributes.alt) {
+              return FigureImage;
+            }
+            return undefined;
+          },
+        }
       });
     })(),
   },

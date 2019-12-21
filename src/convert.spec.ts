@@ -1,5 +1,5 @@
-import Vue, { CreateElement } from 'vue';
-import convert, { ComponentRegisterOption } from './convert';
+import { CreateElement } from 'vue';
+import convert from './convert';
 
 test('convert', () => {
   const markdown = `
@@ -15,7 +15,7 @@ plain text.
 `;
 
   const mockH: CreateElement = jest.fn().mockImplementation((...args) => args);
-  const vnodes = convert(mockH, markdown, {});
+  const vnodes = convert(mockH, markdown, { components : {}});
 
   expect(vnodes).toEqual([
     [
