@@ -14,7 +14,7 @@ import gemojiToEmoji from 'remark-gemoji-to-emoji';
 import rehypePrism from '@mapbox/rehype-prism';
 import 'prismjs/themes/prism.css';
 
-import Markduck from '../src/index.ts';
+import markduck from '../src/index.ts';
 import FigureImage from './FigureImage.vue';
 import ListItem from './ListItem.vue';
 import UnorderedList from './UnorderedList.vue';
@@ -22,22 +22,20 @@ import UnorderedList from './UnorderedList.vue';
 export default {
   name: 'App',
   components: {
-    markduck: (() => {
-      return Markduck({
-        remarkPlugins: [gemojiToEmoji],
-        rehypePlugins: [rehypePrism],
-        components: {
-          ul: UnorderedList,
-          li: ListItem,
-          img: nodeData => {
-            if (nodeData.attrs.alt) {
-              return FigureImage;
-            }
-            return undefined;
-          },
+    markduck: markduck({
+      remarkPlugins: [gemojiToEmoji],
+      rehypePlugins: [rehypePrism],
+      components: {
+        ul: UnorderedList,
+        li: ListItem,
+        img(nodeData) {
+          if (nodeData.attrs.alt) {
+            return FigureImage;
+          }
+          return undefined;
         },
-      });
-    })(),
+      },
+    }),
   },
   data() {
     return {

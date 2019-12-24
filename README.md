@@ -28,13 +28,14 @@ $ yarn add markduckjs
 </template>
 
 <script>
-import UnorderedList from '/your/custom/components/UnorderedList.vue';
-import ListItem from '/your/custom/components/ListItem.vue';
-import FigureImage from '/your/custom/components/FigureImage.vue';
-
+import markduck from 'markduckjs';
 import gemojiToEmoji from 'remark-gemoji-to-emoji';
 import rehypePrism from '@mapbox/rehype-prism';
 import 'prismjs/themes/prism.css';
+
+import UnorderedList from '/your/custom/components/UnorderedList.vue';
+import ListItem from '/your/custom/components/ListItem.vue';
+import FigureImage from '/your/custom/components/FigureImage.vue';
 
 export default {
   data() {
@@ -43,22 +44,20 @@ export default {
     };
   },
   components: {
-    markduck: (() => {
-      return Markduck({
-        remarkPlugins: [gemojiToEmoji],
-        rehypePlugins: [rehypePrism],
-        components: {
-          ul: UnorderedList,
-          li: ListItem,
-          img: nodeData => {
-            if (nodeData.attrs.alt) {
-              return FigureImage;
-            }
-            return undefined;
-          },
+    markduck: markduck({
+      remarkPlugins: [gemojiToEmoji],
+      rehypePlugins: [rehypePrism],
+      components: {
+        ul: UnorderedList,
+        li: ListItem,
+        img(nodeData) {
+          if (nodeData.attrs.alt) {
+            return FigureImage;
+          }
+          return undefined;
         },
-      });
-    })(),
+      },
+    }),
   },
 };
 ```
