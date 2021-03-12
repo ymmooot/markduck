@@ -2,6 +2,7 @@ import { CreateElement } from 'vue';
 import unified, { Plugin, Settings } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkToRehype from 'remark-rehype';
+import remarkGfm from 'remark-gfm';
 
 import remarkVue, { UserRemarkVueOption, ComponentRegisterOption } from './rehype-vue';
 
@@ -26,7 +27,7 @@ const convert = (createElement: CreateElement, markdown: string, option: Option)
   // prettier-ignore
   const plugins = [
     remarkParse,
-    ...remarkPlugins,
+    [remarkGfm, ...remarkPlugins],
     remarkToRehype,
     ...rehypePlugins,
     [remarkVue, remarkVueOption]
@@ -38,9 +39,9 @@ const convert = (createElement: CreateElement, markdown: string, option: Option)
     }
     return pipe.use(plugin);
   }, unified());
-  const { contents } = processor.processSync(markdown);
+  const { result } = processor.processSync(markdown);
 
-  return contents;
+  return result;
 };
 
 export default convert;

@@ -6,7 +6,7 @@
   "author": "Ryota Yamamoto <ryota.yama.9@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./src",
     "test:coverage": "npm test -- --coverage",
     "build": "tsc -p .",
     "demo": "parcel start example/index.html",
@@ -34,30 +34,35 @@
   ],
   "dependencies": {
     "@mapbox/hast-util-table-cell-style": "^0.1.3",
-    "@mapbox/rehype-prism": "^0.3.1",
-    "hast-to-hyperscript": "^7.0.4",
-    "hast-util-sanitize": "^2.0.1",
-    "remark-parse": "^7.0.2",
-    "remark-rehype": "^5.0.0",
-    "unified": "^8.4.2",
-    "unist-util-visit": "^2.0.1",
-    "vue": "^2.6.11",
-    "vue-hot-reload-api": "^2.3.4"
+    "@mapbox/rehype-prism": "^0.6.0",
+    "hast-to-hyperscript": "^9.0.1",
+    "hast-util-sanitize": "^3.0.2",
+    "remark-gfm": "^1.0.0",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.0.0",
+    "unified": "^9.2.1",
+    "unist-util-visit": "^2.0.3",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.24",
-    "@vue/component-compiler-utils": "^3.1.0",
-    "@vue/test-utils": "^1.0.0-beta.30",
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.20",
+    "@vue/test-utils": "^1.1.3",
     "babel-preset-env": "^1.7.0",
-    "jest": "^24.9.0",
-    "parcel-bundler": "^1.12.4",
-    "postcss-modules": "^1.4.1",
-    "prettier": "^1.19.1",
-    "sass": "^1.23.7",
-    "shipjs": "0.11.3",
-    "ts-jest": "^24.2.0",
-    "typescript": "^3.7.3",
-    "vue-template-compiler": "^2.6.11"
+    "cz-conventional-changelog": "^3.3.0",
+    "jest": "^26.6.3",
+    "parcel-bundler": "1.12.3",
+    "prettier": "^2.2.1",
+    "shipjs": "0.23.0",
+    "ts-jest": "^26.5.3",
+    "typescript": "^4.2.3",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

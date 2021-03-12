@@ -57,7 +57,7 @@ class Duck {
 ## sub titles
 
 | left | right |
-| :--- | ---: |
+| :---- | ----: |
 | ![Reflected　Fuji](https://pbs.twimg.com/media/DxW9ZfOUcAAJOQk?format=jpg) | plain text |
 | [link](https://google.com) | **bold text** |
 

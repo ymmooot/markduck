@@ -1,6 +1,6 @@
 <template functional>
   <figure :class="[data.class, data.staticClass, $style.figure]">
-    <img　:class="$style.image" :src="props.src" :alt="props.alt">
+    <img :class="$style.image" :src="props.src" :alt="props.alt" />
     <figcaption :class="$style.caption">{{ props.alt }}</figcaption>
   </figure>
 </template>

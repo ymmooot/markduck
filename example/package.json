@@ -10,9 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "prismjs": "^1.17.1",
-    "remark-gemoji-to-emoji": "^1.1.0"
+    "remark-gemoji-to-emoji": "^1.1.0",
+    "vue-hot-reload-api": "^2.3.4"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3"
+    "@babel/core": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@vue/component-compiler-utils": "^3.2.0",
+    "babel-preset-env": "^1.7.0",
+    "postcss-modules": "^1.0.0",
+    "sass": "^1.32.8"
   }
 }
