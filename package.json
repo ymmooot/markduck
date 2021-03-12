@@ -1,6 +1,6 @@
 {
   "name": "markduckjs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Render markdown with your Vue components.",
   "main": "lib/index.js",
   "author": "Ryota Yamamoto <ryota.yama.9@gmail.com>",
