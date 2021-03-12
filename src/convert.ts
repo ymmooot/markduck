@@ -26,8 +26,9 @@ const convert = (createElement: CreateElement, markdown: string, option: Option)
 
   // prettier-ignore
   const plugins = [
+    remarkGfm,
     remarkParse,
-    [remarkGfm, ...remarkPlugins],
+    ...remarkPlugins,
     remarkToRehype,
     ...rehypePlugins,
     [remarkVue, remarkVueOption]
