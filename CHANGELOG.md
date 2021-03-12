@@ -1,3 +1,12 @@
+## [0.0.8](https://github.com/ymmooot/markduck/compare/v0.0.7...v0.0.8) (2021-03-12)
+
+
+### Bug Fixes
+
+* fix a bug of using reamrk plugins ([35e8114](https://github.com/ymmooot/markduck/commit/35e81149c4e2116d773d073cd7c77e3701e03c69))
+
+
+
 ## [0.0.7](https://github.com/ymmooot/markduck/compare/v0.0.6...v0.0.7) (2021-03-12)
 
 
