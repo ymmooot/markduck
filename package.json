@@ -35,7 +35,7 @@
   "dependencies": {
     "@mapbox/hast-util-table-cell-style": "^0.1.3",
     "@mapbox/rehype-prism": "^0.6.0",
-    "hast-to-hyperscript": "^9.0.1",
+    "hast-to-hyperscript": "^10.0.0",
     "hast-util-sanitize": "^3.0.2",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
