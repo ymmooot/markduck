@@ -6,6 +6,8 @@ import remarkGfm from 'remark-gfm';
 
 import remarkVue, { UserRemarkVueOption, ComponentRegisterOption } from './rehype-vue';
 
+type CreateElement = typeof h
+
 type PluginOption = Plugin | [Plugin, Settings];
 export type Option = {
   components?: ComponentRegisterOption;
@@ -14,7 +16,7 @@ export type Option = {
   rehypePlugins?: PluginOption[];
 };
 
-const convert = (createElement: typeof h, markdown: string, option: Option) => {
+const convert = (createElement: CreateElement, markdown: string, option: Option, isVue3: boolean) => {
   const remarkPlugins = option?.remarkPlugins || [];
   const rehypePlugins = option?.rehypePlugins || [];
 
@@ -22,6 +24,7 @@ const convert = (createElement: typeof h, markdown: string, option: Option) => {
     createElement,
     components: option.components,
     sanitizeScheme: option.sanitizeScheme,
+    isVue3,
   };
 
   // prettier-ignore
@@ -30,7 +33,7 @@ const convert = (createElement: typeof h, markdown: string, option: Option) => {
     remarkParse,
     ...remarkPlugins,
     remarkToRehype,
-    // ...rehypePlugins,
+    ...rehypePlugins,
     [remarkVue, remarkVueOption]
   ];
 

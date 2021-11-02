@@ -29,10 +29,7 @@ export default {
         ul: UnorderedList,
         li: ListItem,
         img(nodeData) {
-          if (nodeData.attrs.alt) {
-            return FigureImage;
-          }
-          return undefined;
+          return nodeData.alt ? FigureImage : undefined
         },
       },
     }),

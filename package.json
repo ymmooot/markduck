@@ -2,13 +2,17 @@
   "name": "markduckjs",
   "version": "0.0.8",
   "description": "Render markdown with your Vue components.",
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "author": "Ryota Yamamoto <ryota.yama.9@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "jest ./src",
     "test:coverage": "npm test -- --coverage",
-    "build": "tsc -p .",
+    "build": "npx rimraf dist && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --module es2015 --outDir dist/esm -d",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "prettier --vue-indent-script-and-style=false --check '**/*.{js,ts,vue,html,json,md,yml}'",
     "lintfix": "npm run lint -- --write",
     "typecheck": "tsc -p . --noEmit",
@@ -16,7 +20,7 @@
     "release:trigger": "shipjs trigger"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "typings": "./lib/index.d.ts",
   "repository": {
@@ -37,7 +41,7 @@
     "hast-util-sanitize": "^3.0.2",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
-    "remark-rehype": "^8.0.0",
+    "remark-rehype": "^10.0.0",
     "unified": "^9.2.1",
     "unist-util-visit": "^2.0.3",
     "vue-demi": "^0.12.0"
@@ -47,6 +51,7 @@
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.20",
+    "@vue/compiler-sfc": "^3.2.21",
     "@vue/test-utils": "^2.0.0-rc.16",
     "babel-preset-env": "^1.7.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -56,8 +61,7 @@
     "shipjs": "0.23.0",
     "ts-jest": "^26.5.3",
     "typescript": "^4.2.3",
-    "vue": "^3.0.0",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^3.0.0"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
