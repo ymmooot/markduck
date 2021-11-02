@@ -1,4 +1,4 @@
-import { CreateElement } from 'vue';
+import { h } from 'vue-demi';
 import unified, { Plugin, Settings } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkToRehype from 'remark-rehype';
@@ -14,7 +14,7 @@ export type Option = {
   rehypePlugins?: PluginOption[];
 };
 
-const convert = (createElement: CreateElement, markdown: string, option: Option) => {
+const convert = (createElement: typeof h, markdown: string, option: Option) => {
   const remarkPlugins = option?.remarkPlugins || [];
   const rehypePlugins = option?.rehypePlugins || [];
 
@@ -30,7 +30,7 @@ const convert = (createElement: CreateElement, markdown: string, option: Option)
     remarkParse,
     ...remarkPlugins,
     remarkToRehype,
-    ...rehypePlugins,
+    // ...rehypePlugins,
     [remarkVue, remarkVueOption]
   ];
 

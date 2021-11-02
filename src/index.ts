@@ -1,11 +1,11 @@
-import Vue from 'vue';
+import { defineComponent, h } from 'vue-demi';
 import convert, { Option } from './convert';
 
 export default (option?: Option) => {
-  return Vue.extend({
+  return defineComponent({
     name: 'markduck-root',
     props: { markdown: { type: String, required: true } },
-    render(h): any {
+    render() {
       return convert(h, this.markdown, option);
     },
   });

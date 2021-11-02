@@ -1,5 +1,7 @@
-import { CreateElement } from 'vue';
+import { h } from 'vue-demi';
 import convert from './convert';
+
+type CreateElement = typeof h
 
 test('convert', () => {
   const markdown = `

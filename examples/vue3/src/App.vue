@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="column">
-      <textarea class="textarea" v-model="markdown"></textarea>
+      <textarea class="textarea" v-model="markdown"/>
     </div>
     <div class="column">
       <markduck :markdown="markdown" />
@@ -14,7 +14,7 @@ import gemojiToEmoji from 'remark-gemoji-to-emoji';
 import rehypePrism from '@mapbox/rehype-prism';
 import 'prismjs/themes/prism.css';
 
-import markduck from '../src/index.ts';
+import markduck from 'markduckjs';
 import FigureImage from './FigureImage.vue';
 import ListItem from './ListItem.vue';
 import UnorderedList from './UnorderedList.vue';
@@ -85,7 +85,7 @@ body {
 }
 </style>
 
-<style lang="scss" scoped>
+<style scoped>
 .app {
   display: flex;
   justify-content: stretch;
@@ -100,8 +100,9 @@ body {
 .column {
   width: 100%;
   padding: 20px;
-  &:nth-child(1) {
+}
+
+.column:nth-child(1) {
     border-right: 1px solid gray;
   }
-}
 </style>

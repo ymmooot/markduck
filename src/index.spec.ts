@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { defineComponent } from 'vue-demi';
 import { shallowMount } from '@vue/test-utils';
 import makeMarkduckComponent from './index';
 import convert from './convert';
@@ -6,8 +6,8 @@ jest.mock('./convert');
 
 test('make Markduck component', () => {
   const components = {
-    img: Vue.extend({ name: 'MyCustomImage' }),
-    a: Vue.extend({ name: 'MyCustomLink' }),
+    img: defineComponent({ name: 'MyCustomImage' }),
+    a: defineComponent({ name: 'MyCustomLink' }),
   };
   const remarkPlugins = [];
   const Markduck = makeMarkduckComponent({
